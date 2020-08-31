@@ -17,3 +17,24 @@ Calculates a JONSWAP ocean wave spectrum and optionally a realisation in time do
   -v: verbose output
   -h: hide spectrum
 ```
+
+# Compile
+
+No special dependencies required for the library and command line interface.
+
+## Main command line interface
+
+`make`
+
+## Mockup multithread performance implementation
+
+`make jonswap_multithread`
+
+## Plots
+
+For the plots, `gnuplot_i` is required.
+Copy /symlink `gnuplot_i.c` and `gnuplot_i.h` to the current directory
+
+`make plots` 
+
+

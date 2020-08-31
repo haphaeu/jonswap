@@ -1,0 +1,6 @@
+*.o
+*~
+jonswap
+jonswap_multithread
+plot
+gnuplot_i.[c,h]
