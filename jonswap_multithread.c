@@ -1,11 +1,11 @@
 /*
 Mock-up implementation using multithreading to benchmark performance.
 
-This does do anything specific rather than calculating various
+This does not do anything specific rather than calculating various
 spectra and timetraces with very refined steps.
 
-
-gcc jonswap_multithread.c gnuplot_i.c -o jonswap_multithread -lm -lpthread -Wno-implicit-function-declaration
+Compile command:
+gcc jonswap_multithread.c -o jonswap_multithread -lm -lpthread -Wno-implicit-function-declaration
 
 #+AUTHOR Rafael Rossi
 #+DATE 25-Oct-2019
@@ -15,8 +15,6 @@ gcc jonswap_multithread.c gnuplot_i.c -o jonswap_multithread -lm -lpthread -Wno-
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-
-#include "gnuplot_i.h"
 
 #include <pthread.h>
 #include <time.h>
@@ -156,11 +154,6 @@ void* worker_thread(void *vargp) {
     int nharms, tt_size;
     short show_spectrum, show_timetrace;
     
-    // handler for the gnuplot interface
-    gnuplot_ctrl *h1, *h2;
-    h1 = gnuplot_init(); h2 = gnuplot_init();
-    gnuplot_setstyle(h1, "lines"); gnuplot_setstyle(h2, "lines");
-
     // hard coded inits
     w1 = 0.2;
     w2 = 6.28;
@@ -188,7 +181,6 @@ void* worker_thread(void *vargp) {
         // m0 = Hs**2 / 16 ==> Hs = 4*sqrt(m0)
         printf("Check Hs %.2f m\n", 4*sqrt(spectral_moment(0, js, w, nharms)));
     if (show_spectrum){
-        gnuplot_plot_xy(h1, t, js, nharms, "Spectrum");
 	if (verbose) {
 	    printf("\nSpectrum\n\n");
 	    printf("%10s %10s %12s %12s %12s %10s \n", "T", "w", "PM", "JS", "amp", "phi");
@@ -198,7 +190,6 @@ void* worker_thread(void *vargp) {
 	}
     }
     if (show_timetrace) {
-        gnuplot_plot_xy(h2, tt, eta, tt_size, "Time History");
 	if (verbose) {
 	    printf("\nTime History\n\n");
 	    printf("%10s %10s \n", "Time", "Elevation");
@@ -207,11 +198,6 @@ void* worker_thread(void *vargp) {
 	}
     }
     
-    //    printf("Press Enter to exit.\n");
-    //    char input[5];
-    //    fgets(input, sizeof input, stdin);
-    //    gnuplot_close(h1); gnuplot_close(h2);
-
     printf("Done with Hs %.1f Tp %4.1f dt %.2f seed %ld\n", hs, tp, ts, seed);
     
     return NULL;
