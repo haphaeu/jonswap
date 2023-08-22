@@ -25,14 +25,14 @@ int main(int argc, char *argv[]) {
 
     if (--argc < 2) {
         printf("Error: invalid arguments. Use:\n\n");
-        printf("  jonswap hs tp [-n num_harmonics] [-g gamma] [-s seed] [-d duration] [-t timestep] [-h]\n");
+        printf("  plot hs tp [-n num_harmonics] [-g gamma] [-s seed] [-d duration] [-t timestep] [-h]\n");
         printf("\n  hs: significant wave height in meters.");
-	printf("\n  tp: spectral peak period in seconds");
+        printf("\n  tp: spectral peak period in seconds");
         printf("\n  -n: number of harmonics used to discretise the spectrum.");
         printf("\n  -g: value for gamma. If ommited, DNV is used.");
         printf("\n  -s: seed number for phase randomisation.");
-	printf("\n  -d: duration - timetrace will be shown.");
-	printf("\n  -t: time step. default is 0.1 seconds.");	
+        printf("\n  -d: duration - timetrace will be shown.");
+        printf("\n  -t: time step. default is 0.1 seconds.");
         printf("\n  -h: hide spectrum");
         printf("\n");
         exit(1);
@@ -108,10 +108,10 @@ int main(int argc, char *argv[]) {
     eta = wave_elevation(amp, w, phi, tt, nharms, tt_size);
 
     if (show_spectrum)
-        gnuplot_plot_xy(h1, t, js, nharms, "Spectrum");
+        gnuplot_plot_coordinates(h1, t, js, nharms, "Spectrum");
 
     if (show_timetrace)
-        gnuplot_plot_xy(h2, tt, eta, tt_size, "Time History");
+        gnuplot_plot_coordinates(h2, tt, eta, tt_size, "Time History");
     
     printf("Press Enter to exit.\n");
     char input[5];

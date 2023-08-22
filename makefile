@@ -14,7 +14,7 @@ jonswap: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 plot: $(OBJ2)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) -Wnoimplicit-function-declaration
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) -Wno-implicit-function-declaration
 
 jonswap_multithread: $(OBJ3)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) -lpthread

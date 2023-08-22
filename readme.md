@@ -1,6 +1,7 @@
 # JONSWAP 
 
-Calculates a JONSWAP ocean wave spectrum and optionally a realisation in time domain.
+JONSWAP ocean wave spectrum and realisation in time domain.
+
 
 # Usage
 
@@ -18,6 +19,8 @@ Calculates a JONSWAP ocean wave spectrum and optionally a realisation in time do
   -h: hide spectrum
 ```
 
+The `plot` tool has the same call signature as `jonswap`.
+
 # Compile
 
 No special dependencies required for the library and command line interface.
@@ -26,16 +29,26 @@ No special dependencies required for the library and command line interface.
 
 `make`
 
-## Mockup multithread performance implementation
-
-`make jonswap_multithread`
 
 ## Plots
 
 For the plots, `gnuplot_i` is required.
 Copy /symlink `gnuplot_i.c` and `gnuplot_i.h` to the current directory
 
-`make plots` 
+`make plot` 
+
+## Mockup multithread performance implementation
+
+`make jonswap_multithread`
+
+# Python
+
+This repository has partial implementations in Python.
+
+ - `jonswap.py`: 
+       Calculates JONSWAP spectrum only. No time domain realisation.
+ - `plots.py`:
+       Plot results from `jonswap.c`
 
 
 # Source
