@@ -146,7 +146,7 @@ double spectral_moment(int n, double *s, double *w, int length) {
      */
     double m;
     for (int i = 0; i < length - 1; ++i)
-        m += pow((*(w+i+1) - *(w+i))/2.0, n) * (*(w+i+1) - *(w+i)) * (*(s+i) + *(s+i+1));/* / 2.0; */
+        m += pow((*(w+i+1) + *(w+i))/2.0, n) * (*(w+i+1) - *(w+i)) * (*(s+i) + *(s+i+1));/* / 2.0; */
     return m/2.0;
 }
 

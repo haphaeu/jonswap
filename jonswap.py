@@ -44,6 +44,27 @@ def jonswap(hs, tp, w):
     return Ay * S_pm * y ** exp(-0.5 * ((w - wp) / s / wp)**2)
 
 
+def spectral_moment(S, w, m=0):
+    """Return mth spectral moment of S(w).
+    
+    Note the units is in radians:
+        
+        [m_th moment] = [(rd / s)**(m+1) * (m**2 * s / rad) ]
+    """
+
+    # Updated to be able to handle multidimensional spectra.
+    # The old way only handles 1D arrays:
+    #     np.trapz(S * (w/2/pi)**m, w)
+    return np.trapz([si * (wi)**m for si, wi in zip(S, w)], w, axis=0)
+
+
+def spectral_moment2(S, w, m=0):
+    M = 0
+    for i in range(1, len(S)):
+        M += ((w[i]+w[i-1])/2)**m * (w[i] - w[i-1]) * (S[i] + S[i-1])/2
+    return M 
+
+
 def jonswap_is_valid(hs, tp):
     return 3.6 < tp / hs**0.5 < 5
 
